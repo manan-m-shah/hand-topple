@@ -1,7 +1,7 @@
 import { State } from "../types/Context";
 
 const initialState: State = {
-    count: 0
+    hand: [],
 }
 
 export default initialState

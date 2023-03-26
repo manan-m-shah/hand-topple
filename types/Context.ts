@@ -1,9 +1,9 @@
 type State = {
-    count: number
+    hand: any
 }
 
 export enum ActionKind {
-    COUNT = "COUNT",
+    SET_HAND = "SET_HAND",
 }
 
 type Action = {
