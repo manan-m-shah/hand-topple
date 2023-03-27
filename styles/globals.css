@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.main div[data-nextjs-scroll-focus-boundary] {
+    height: 100%; /* set the height of the div with data-nextjs-scroll-focus-boundary to 100% of its parent */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  

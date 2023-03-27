@@ -11,7 +11,7 @@ export default function RootLayout({
         <AppProvider>
             <html>
                 <head></head>
-                <body>
+                <body className='h-screen w-screen'>
                     {children}
                 </body>
             </html>

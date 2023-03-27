@@ -1,7 +1,8 @@
 "use client";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState, useEffect } from "react";
 import AppContext from "../context/AppContext";
 import { ActionKind } from "../types/Context";
+// @ts-ignore
 import * as handpose from "@tensorflow-models/handpose";
 import "@tensorflow/tfjs-backend-webgl";
 import Webcam from "react-webcam";
@@ -9,27 +10,35 @@ import Playground from "../components/Playground";
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);
-  console.log("Hand", state.hand);
+  // console.log("Hand", state.hand);
 
   const webcamRef = useRef(null);
+  const [net, setNet] = useState<handpose.HandPose | null>(null);
 
   const runHandpose = async () => {
-    const net = await handpose.load();
+    if (net) {
+      return;
+    }
+    const newNet = await handpose.load();
+    setNet(newNet);
     console.log("Handpose model loaded.");
-    // // Loop and detect hands
-    // setInterval(() => {
-    //   detect(net);
-    // }, 100);
+    // Loop and detect hands
+    setInterval(() => {
+      detect(newNet);
+    }, 100);
   };
 
   const detect = async (net: handpose.HandPose) => {
+    console.log("Detecting hands");
     // Check data is available
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
+      // @ts-ignore
       webcamRef.current.video.readyState === 4
     ) {
       // Get Video Properties
+      // @ts-ignore
       const video = webcamRef.current.video;
 
       // Make Detections
@@ -41,7 +50,7 @@ const Home = () => {
   runHandpose();
 
   return (
-    <div>
+    <div className="max-h-screen h-full w-full">
       <Webcam
         ref={webcamRef}
         style={{
@@ -57,7 +66,9 @@ const Home = () => {
         }}
       />
 
-      <Playground />
+      <div className="max-h-screen h-full w-full">
+        <Playground />
+      </div>
 
       {/* <canvas
         ref={canvasRef}

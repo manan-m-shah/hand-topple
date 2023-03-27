@@ -12,11 +12,16 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/three": "^0.149.0",
+    "drei": "^1.0.0",
     "fingerpose": "^0.1.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-webcam": "^7.0.1"
+    "react-three-fiber": "^6.0.13",
+    "react-webcam": "^7.0.1",
+    "three": "^0.150.1",
+    "use-cannon": "^0.5.3"
   },
   "devDependencies": {
     "@types/node": "18.11.3",
